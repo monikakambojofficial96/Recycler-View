@@ -11,7 +11,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List<Model> modelList = new ArrayList<>();
+    public List<ModelFruits> modelList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,42 +20,43 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.activity_main_recycler_view);
         modelData();
-
         FruitsAdapter fruitsAdapter=new FruitsAdapter(modelList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(fruitsAdapter);
+
 
     }
 
     private void modelData() {
 
-        Model model=new Model("Apple",R.drawable.apple);
+        ModelFruits model=new ModelFruits("Apple",R.raw.apple);
         modelList.add(model);
-        model=new Model("Orange",R.drawable.orange);
+        model=new ModelFruits("Orange",R.raw.orange);
         modelList.add(model);
-        model=new Model("Banana",R.drawable.banana);
+        model=new ModelFruits("Banana",R.raw.banana);
         modelList.add(model);
-        model=new Model("Watermelon",R.drawable.watermelon);
+        model=new ModelFruits("Watermelon",R.raw.watermelon);
         modelList.add(model);
-        model=new Model("Kiwi",R.drawable.kiwi);
+        model=new ModelFruits("Kiwi",R.raw.kiwi);
         modelList.add(model);
-        model=new Model("Grapes",R.drawable.grapes);
+        model=new ModelFruits("Grapes",R.raw.grapes);
         modelList.add(model);
-        model=new Model("Mango",R.drawable.mango);
+        model=new ModelFruits("Mango",R.raw.mango);
         modelList.add(model);
-        model=new Model("Cucumbers",R.drawable.cucumbers);
+        model=new ModelFruits("Cucumbers",R.raw.cucumbers);
         modelList.add(model);
-        model=new Model("Blueberry",R.drawable.blueberry);
+        model=new ModelFruits("Blueberry",R.raw.blueberry);
         modelList.add(model);
-        model=new Model("Cherry",R.drawable.cherry);
+        model=new ModelFruits("Cherry",R.raw.cherry);
         modelList.add(model);
-        model=new Model("Apricot",R.drawable.apricot);
+        model=new ModelFruits("Apricot",R.raw.apricot);
         modelList.add(model);
-        model=new Model("Guava",R.drawable.guava);
+        model=new ModelFruits("Guava",R.raw.guava);
         modelList.add(model);
-        model=new Model("Dates",R.drawable.dates);
+        model=new ModelFruits("Dates",R.raw.dates);
         modelList.add(model);
     }
+  }
 
 
-}
+
