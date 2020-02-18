@@ -9,17 +9,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 public class FruitsAdapter extends RecyclerView.Adapter<FruitsAdapter.FruitsViewHolder>{
 
-  private String[] data;
-  private Integer[] imgData;
+  private List<Model> modelList;
 
-  public FruitsAdapter(String[] data,Integer[] imgData){
-      this.data=data;
-      this.imgData=imgData;
-  }
-
-    @Override
+   @Override
     public int getItemViewType(int position) {
         return super.getItemViewType(position);
     }
@@ -33,19 +29,23 @@ public class FruitsAdapter extends RecyclerView.Adapter<FruitsAdapter.FruitsView
         return new FruitsViewHolder ( view );
     }
 
+    public FruitsAdapter(List<Model> modelList){
+      this.modelList=modelList;
+    }
+
+
     @Override
     public void onBindViewHolder(@NonNull FruitsViewHolder holder, int position) {
 
-      String title=data[position];
-      Integer imageView=imgData[position];
-      holder.tvFruits.setText ( title );
-      holder.ivView.setImageResource ( imageView );
+        Model model=modelList.get(position);
+      holder.tvFruits.setText ( model.fruitsNames );
+      holder.ivView.setImageResource ( model.imageId);
 
     }
 
     @Override
     public int getItemCount() {
-       return data.length;
+       return modelList.size();
     }
 
     public class FruitsViewHolder extends RecyclerView.ViewHolder{
