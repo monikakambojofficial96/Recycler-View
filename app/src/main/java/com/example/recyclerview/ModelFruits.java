@@ -1,26 +1,22 @@
 package com.example.recyclerview;
 
-public class ModelFruits {
+class ModelFruits {
 
-    public String fruitsNames;
-    public int imageId;
+   String fruitsNames;
+   int imageId;
 
-    public boolean isSelected;
+    boolean isSelected;
 
 
 
-    public void setGetSelected(boolean getSelected) {
+    void setGetSelected(boolean getSelected) {
         this.isSelected = getSelected;
     }
 
 
-    public ModelFruits(String fruitsNames, int imageId){
+    ModelFruits(String fruitsNames, int imageId){
 
         this.fruitsNames=fruitsNames;
         this.imageId=imageId;
-
-
     }
-
-
 }

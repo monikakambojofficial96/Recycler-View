@@ -7,10 +7,8 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
 
 public class FruitsAdapter extends RecyclerView.Adapter<FruitsAdapter.FruitsViewHolder> {
@@ -26,7 +24,7 @@ public class FruitsAdapter extends RecyclerView.Adapter<FruitsAdapter.FruitsView
         return new FruitsViewHolder(view);
     }
 
-    public FruitsAdapter(List<ModelFruits> modelList) {
+    FruitsAdapter(List<ModelFruits> modelList) {
         this.modelList = modelList;
     }
 
@@ -55,13 +53,13 @@ public class FruitsAdapter extends RecyclerView.Adapter<FruitsAdapter.FruitsView
         return modelList.size();
     }
 
-    public class FruitsViewHolder extends RecyclerView.ViewHolder {
+    class FruitsViewHolder extends RecyclerView.ViewHolder {
 
         ImageView ivView;
         TextView tvFruits;
         CheckBox cbSelected;
 
-        public FruitsViewHolder(@NonNull View itemView) {
+        FruitsViewHolder(@NonNull View itemView) {
             super(itemView);
             ivView = itemView.findViewById(R.id.activity_recycler_view_layout_image_view);
             tvFruits = itemView.findViewById(R.id.activity_recycler_view_layout_tvfruits_name);
