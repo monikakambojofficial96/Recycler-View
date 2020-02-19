@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="8dp">
+
     <ImageView
         android:id="@+id/activity_recycler_view_layout_image_view"
         android:layout_width="80dp"

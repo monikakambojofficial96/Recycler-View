@@ -4,21 +4,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+ public class MainActivity extends AppCompatActivity implements RecyclerViewClickInterface{
 
     public List<ModelFruits> modelList = new ArrayList<>();
+    public TextView tvFruitsName;
+    public ImageView ivFruitsImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        tvFruitsName=findViewById(R.id.activity_main_tv_view);
+        ivFruitsImage=findViewById(R.id.activity_main_iv_image);
 
         RecyclerView recyclerView = findViewById(R.id.activity_main_recycler_view);
         modelData();
-        FruitsAdapter fruitsAdapter=new FruitsAdapter(modelList);
+        FruitsAdapter fruitsAdapter=new FruitsAdapter(modelList,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(fruitsAdapter);
 
@@ -54,7 +62,14 @@ public class MainActivity extends AppCompatActivity {
         model=new ModelFruits("Dates",R.raw.dates);
         modelList.add(model);
     }
-  }
+
+     @Override
+     public void onItemClicked(int position) {
+       ivFruitsImage.setImageResource(modelList.get(position).imageId);
+       tvFruitsName.setText(modelList.get(position).fruitsNames);
+
+     }
+ }
 
 
 

@@ -14,6 +14,9 @@ import java.util.List;
 public class FruitsAdapter extends RecyclerView.Adapter<FruitsAdapter.FruitsViewHolder> {
 
     private List<ModelFruits> modelList;
+    public  int selectedPosition=-1;
+    RecyclerViewClickInterface recyclerViewClickInterface;
+
 
     @NonNull
     @Override
@@ -24,8 +27,9 @@ public class FruitsAdapter extends RecyclerView.Adapter<FruitsAdapter.FruitsView
         return new FruitsViewHolder(view);
     }
 
-    FruitsAdapter(List<ModelFruits> modelList) {
+    FruitsAdapter(List<ModelFruits> modelList,RecyclerViewClickInterface recyclerViewClickInterface) {
         this.modelList = modelList;
+        this.recyclerViewClickInterface=recyclerViewClickInterface;
     }
 
 
@@ -36,17 +40,56 @@ public class FruitsAdapter extends RecyclerView.Adapter<FruitsAdapter.FruitsView
         final ModelFruits model = modelList.get(position);
         holder.tvFruits.setText(model.fruitsNames);
         holder.ivView.setImageResource(model.imageId);
-        holder.cbSelected.setChecked(model.isSelected);
 
-        holder.cbSelected.setOnClickListener(new View.OnClickListener() {
+   //start code for selecting only one item at a time
+
+        holder.cbSelected.setTag(position); // This line is important.
+
+        if (position == selectedPosition) {
+            holder.cbSelected.setChecked(true);
+        } else {
+            holder.cbSelected.setChecked(false);
+        }
+        holder.cbSelected.setOnClickListener(onStateChangedListener(holder.cbSelected, position));
+    }
+
+    private View.OnClickListener onStateChangedListener(final CheckBox checkBox, final int position) {
+        return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                model.setGetSelected(holder.cbSelected.isChecked());
+                recyclerViewClickInterface.onItemClicked(position);
 
+                if (checkBox.isChecked()) {
+                    selectedPosition = position;
+                } else {
+                    selectedPosition = -1;
+                }
+
+                notifyDataSetChanged();
             }
-        });
 
+        };
     }
+
+    //end code for selecting one item at a time
+
+//code for selecting multiple items
+
+//        holder.cbSelected.setChecked(model.isSelected);
+//
+//        holder.cbSelected.setChecked(holder.cbSelected.isChecked());
+//
+//
+//            holder.cbSelected.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//               model.setGetSelected(holder.cbSelected.isChecked());
+//
+//            }
+//        });
+   // }
+
+    //end code for multiple items
 
     @Override
     public int getItemCount() {
@@ -57,7 +100,7 @@ public class FruitsAdapter extends RecyclerView.Adapter<FruitsAdapter.FruitsView
 
         ImageView ivView;
         TextView tvFruits;
-        CheckBox cbSelected;
+       CheckBox cbSelected;
 
         FruitsViewHolder(@NonNull View itemView) {
             super(itemView);

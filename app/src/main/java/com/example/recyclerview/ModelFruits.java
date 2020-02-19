@@ -3,20 +3,21 @@ package com.example.recyclerview;
 class ModelFruits {
 
    String fruitsNames;
-   int imageId;
+   Integer imageId;
 
     boolean isSelected;
 
 
 
-    void setGetSelected(boolean getSelected) {
+    public void setGetSelected(boolean getSelected) {
         this.isSelected = getSelected;
     }
 
 
-    ModelFruits(String fruitsNames, int imageId){
+    ModelFruits(String fruitsNames, Integer imageId){
 
         this.fruitsNames=fruitsNames;
         this.imageId=imageId;
     }
+
 }
